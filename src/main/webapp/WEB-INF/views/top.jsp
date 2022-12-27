@@ -65,14 +65,14 @@
       </div>
 	</header>
     
-<!-- 플로팅 버튼(qnalist로 이동) -->
-  </div>
-	<div class="floating-button">
-		<span class="move-qnalist">
-    		<a class="qnalist-btn" href="qnalist.do">Q</a>
-		</span>
-	</div>
-</body>
+		<!-- 문의 목록으로 가는 첫 관문, 플로팅 버튼 -->
+		  </div>
+			<div class="floating-button">
+				<span class="move-qnalist">
+		    		<a class="qnalist-btn" href="qnalist.do">Q</a>
+				</span>
+			</div>
+		</body>
 <!-- 관리자 로그인 모달 -->
 <form name="a" action="admin_login_ok.do" method="post">
   <div class="modal fade" id="AdminLoginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
@@ -169,6 +169,7 @@
 	function login(){location.href="login.do";}
 	function join() {location.href="join.do";}
 	function chat() {location.href="chat.do";}
+	//location.href로 가는 method는 get방식이다
 	function qnaWrite() {location.href="qnaWrite.do";}
 	function logout() {location.href="logout.do";}
 	function mypage() {location.href="mypage.do";}

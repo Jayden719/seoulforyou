@@ -16,6 +16,7 @@ public class QnaMapper {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//인자로 받은 startRow, endRow를 map 컬렉션에 넣고 해당 map타입의 값을 qna.xml의  아이디가 listBoard인 쿼리문에 인자로 넣는다
 	public List<QnaDTO> listBoard(int startRow, int endRow){
 			Map<String, Integer> map = new Hashtable<>();
 			map.put("start", startRow);
@@ -60,9 +61,12 @@ public class QnaMapper {
 	public int deleteQna(QnaDTO dto) {
 		return sqlSession.delete("deleteQna", dto);
 	}
-	
-	public int deleteQna2(int qna_no) {
-		return sqlSession.delete("deleteQna", qna_no);
+	//
+	public int deleteQna(String qna_passwd, int qna_no) {
+		Map<String,Object> map = new Hashtable<>();
+		map.put("qna_passwd", qna_passwd);
+		map.put("qna_no", qna_no);
+		return sqlSession.delete("deleteOfQna", qna_no);
 	}
 	public List<QnaDTO> listOfQna(){
 		return sqlSession.selectList("listOfQna");

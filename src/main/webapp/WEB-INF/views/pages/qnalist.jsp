@@ -53,7 +53,7 @@
 		<!-- 답변글이 있을 때 -->
 			<c:if test="${not empty dto.qna_reply_content}">
 				<td>
-				<a onclick="valueSetting('${dto.qna_no}', '${dto.qna_reply_regdate}','${dto.qna_reply_content}')" 
+				<a onclick="valueSetting('${dto.qna_no}','${dto.qna_reply_content}')" 
 					data-bs-toggle="modal" data-bs-target="#reply_qna">답변완료</a>
 				</td>
 			</c:if>
@@ -88,9 +88,9 @@
 
 			</ul>
 		</nav>
-
-
-	<button type="button" onclick="javascript:qnaWrite()" class="btn btn-outline-success btn px-4 me-md-3" style="float:right" >글쓰기</button>
+		<!-- 글작성을 위한 초기 버튼 -->
+	<button type="button" onclick="javascript:qnaWrite()" 
+	class="btn btn-outline-success btn px-4 me-md-3" style="float:right" >글쓰기</button>
 	</div>
 </body>
 <br>	
@@ -109,7 +109,7 @@
 		</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">확인</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
       </div>
     </div>
   </div>
@@ -119,7 +119,6 @@
 //답변 창을 클릭했을 때 모달창에 각 dto값을 세팅해준다
 function valueSetting(qno_no,qno_reply_regdate, qna_reply_content){
 	$('.qno_no').attr("value", qno_no);
-	$('.qno_reply_regdate').attr("value", qno_reply_regdate);
 	$('.qna_reply_content').attr("value", qna_reply_content);	
 }
 </script>

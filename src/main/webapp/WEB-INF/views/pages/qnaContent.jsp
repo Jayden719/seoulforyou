@@ -44,7 +44,8 @@
 			</div>
 		</div>
 		</div>
-<form method="post">		
+<form method="post">
+<!-- 모달창이 호출된다 -->		
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -54,6 +55,7 @@
       </div>
       <div class="modal-body">
         <label for="qna_passwd">비밀번호 입력</label>
+        <!-- form태그로 이동할때 해당 문의글의 qna_no 값을 hidden로 넣어서 보내준다 -->
         <input type="password" id="qna_passwd" name="qna_passwd">
         <input type="hidden" id="qna_no" name="qna_no" value="${getBoard.qna_no}">
         

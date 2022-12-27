@@ -29,11 +29,12 @@ public class QnaController {
 	MemberMapper memberMapper;
 	
 	@RequestMapping("/qnalist.do")
-	
 	public String listBoard(HttpServletRequest req, @RequestParam(required = false) String pageNum) {		
+	//String pageNum이 매개변수로 선언되어 넘어오는데 이때 required=false 조건으로 인하여 pageNum의 초기값이 null일지라도 에러가 발생하지 않는다
 		if (pageNum == null) {
 			pageNum = "1";
 		}
+		//현재페이지, 페이지 내 등록개수, 페이지 가장 위 번호, 페이지 가장 아래 번호, 총 등록문의 개수 변수들을 선언
 		int currentPage = Integer.parseInt(pageNum);
 		int pageSize = 5;
 		int startRow = (currentPage-1) * pageSize + 1;
@@ -41,7 +42,8 @@ public class QnaController {
 		int countRow = boardMapper.getCount();
 		if (endRow > countRow) endRow = countRow;
 		
-		//List<BoardDTO> list = boardDAO.listBoard(startRow, endRow);
+		//startRow, endRow를 인자로 boardMapper의 listBoard()에 넣어준다
+		//
 		List<QnaDTO> list = boardMapper.listBoard(startRow, endRow);
 		int qna_no = countRow - (startRow - 1);
 		req.setAttribute("listBoard", list);
@@ -56,8 +58,6 @@ public class QnaController {
 		req.setAttribute("startPage", startPage);
 		req.setAttribute("endPage", endPage);
 		
-		
-		
 		return "pages/qnalist";
 	}
 	
@@ -71,7 +71,7 @@ public class QnaController {
 		}
 		return "mypage/mypage_qna";
 	}
-	
+	//location.href로 이동한 주소
 	@RequestMapping(value="/qnaWrite.do", method=RequestMethod.GET)
 	public String writeForm_board(HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -84,9 +84,12 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="/qnaWrite.do", method=RequestMethod.POST)
-	public String writePro_board(HttpServletRequest req, @ModelAttribute QnaDTO dto, BindingResult result) {
+	public String writePro_board(HttpServletRequest req, @ModelAttribute QnaDTO dto, 
+			BindingResult result) {
 		HttpSession session = req.getSession();
+		//로그인 된 아이디를 member_id에 넣고
 		String member_id = (String)session.getAttribute("nowUserId");
+		//qna_writer에 해당 아이디를 넣는다, 로그인한 회원과 글작성자를 일치시키기 위함
 		dto.setQna_writer(member_id);
 
 		if (result.hasErrors()) {
@@ -94,6 +97,7 @@ public class QnaController {
 			dto.setQna_re_step(0);
 			dto.setQna_re_level(0);
 		}
+		//QnatDTO를 타입으로 하는 매개변수를 인자로 넣는다
 		int res = boardMapper.insertBoard(dto);
 		if (res>0) {
 			req.setAttribute("msg", "게시글 등록 성공!! 게시글 목록 페이지로 이동합니다.");
@@ -115,6 +119,8 @@ public class QnaController {
 	
 	@RequestMapping(value="/update_qna.do", method=RequestMethod.GET)
 	public String updateForm(HttpServletRequest req, @RequestParam int qna_no) {
+		//Get방식으로  qna_no를 인자로 받고
+		//getBoard()메서드에 qna_no 값과 string타입의 update 값을 인자로 보낸다
 		QnaDTO dto = boardMapper.getBoard(qna_no, "update");
 		req.setAttribute("getBoard", dto);
 		return "pages/qnaUpdate";
@@ -123,6 +129,8 @@ public class QnaController {
 	@RequestMapping(value="/update_qna.do", method=RequestMethod.POST)
 	public String updatePro_board(HttpServletRequest req, 
 							@ModelAttribute QnaDTO dto, BindingResult result) {
+		
+		//QnaDTO타입으로 받은 dto값을 updateBoard()메서드에 인자로 넣어서 보낸다
 		int res = boardMapper.updateBoard(dto);
 		if (res>0) {
 			req.setAttribute("msg", "수정이 완료되었습니다.");
@@ -138,9 +146,8 @@ public class QnaController {
 	}
 	@RequestMapping(value="/qnaDelete.do")
 	public String qna_delete(HttpServletRequest req, @ModelAttribute QnaDTO dto) {
+		//QnaDTO타입의 dto 값을 boardMapper의 deleteQna()인자로 넣어서 실행
 		int res = boardMapper.deleteQna(dto);
-		
-		System.out.println(res);
 		
 		if (res>0) {
 			req.setAttribute("msg", "글 삭제 성공!! 목록페이지로 이동합니다.");
