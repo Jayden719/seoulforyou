@@ -144,6 +144,7 @@ public class QnaController {
 		}
 		return "message";
 	}
+
 	@RequestMapping(value="/qnaDelete.do")
 	public String qna_delete(HttpServletRequest req, @ModelAttribute QnaDTO dto) {
 		//QnaDTO타입의 dto 값을 boardMapper의 deleteQna()인자로 넣어서 실행
