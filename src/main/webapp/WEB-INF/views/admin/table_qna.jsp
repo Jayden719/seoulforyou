@@ -89,7 +89,8 @@
    			 		<input type="hidden" id="adminTemp_subject" name="qna_subject" value="">
    			 		<input type="hidden" id="adminTemp_writer" name="qna_writer" value="" >
 			   		<div class="modal-body d-flex justify-content-center" style="width:500px; height:400px">
-			  		<textarea id="adminTemp_content" name="qna_reply_content" rows="10px" cols="200px"  placeholder="답글을 입력하세요" class="d-flex justify-content-center"></textarea>
+			  		<textarea id="adminTemp_content" name="qna_reply_content" rows="10px" cols="200px"  placeholder="답글을 입력하세요"
+					class="d-flex justify-content-center"></textarea>
 					</div>
 					<div class="modal-footer">
 					<input type="submit" class="btn btn-secondary" value="임시저장" formaction="admin_temp.do">

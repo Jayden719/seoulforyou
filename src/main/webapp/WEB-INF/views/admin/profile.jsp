@@ -10,49 +10,47 @@
 </head>
 <body>
 	
-	<form method="post" enctype="multipart/form-data">
-    <div class="container-fluid px-4">
-     <h1 class="mt-4 ">프로필 수정</h1><br>
-       <div class="card mb-5"></div>
-       <div style="position:relative" class="mb-5">
-       	<div class="d-flex justify-content-center mt-2">
-		<img id="profile_img" name="profile_img" src="https://ezdev-sfy.s3.ap-northeast-2.amazonaws.com/admin/${getAdmin.admin_profileImg}" style="border:5px; border-radius:50%; width:200px; height:200px" />		</div>
-		<div style="position:absolute; top:180; right:540">
-		<div class="d-flex justify-content-center">
-		 
-		<label className="admin_profileImg_button" for="admin_profileImg">
-		<img src="resources/icon/upload.png" style="width:50; height:50; border-radius:50%"> 
-		</label>
-		
-		</div>
-		</div>
-		</div>
-				<div class="row">
-				<div class="col-md-6 offset-md-3">
-				<input type="file" name="admin_profileImg" id="admin_profileImg" accept="image/*" style="display:none"><br>
-				
-				<input type="hidden" class="form-control mb-3" id="no" name="admin_no" value="${getAdmin.admin_no}" readonly>
-				<label class="form-label mb-3">관리자 이름</label> 	
-				<input type="text" class="form-control mb-3" id="name" name="admin_name" value="${getAdmin.admin_name}">
-				<label class="form-label mb-3">관리자 아이디</label> 				
-				<input type="text" class="form-control mb-3" id="id" name="admin_id" value="${getAdmin.admin_id}" >
-				<label class="form-label mb-3">비밀번호</label>
-				<input type="text" class="form-control mb-3" id="passwd" name="admin_passwd" value="${getAdmin.admin_passwd}">
-				<label class="form-label mb-3">이메일</label>
-				<input type="email" class="form-control mb-3" id="email" name="admin_email" value="${getAdmin.admin_email}">
-	   			</div>
-	   			</div>
-	   			
-				<div class="row justify-content-evenly mt-5 mb-5">
-				<div class="col-4" style="display:inline-block">
-				<button class="w-100 btn btn-lg btn-primary col" formaction="admin_update.do" type="submit" >수정</button>
-				</div>
-				<div class="col-4" style="display:inline-block">
-				<button class="w-100 btn btn-lg btn-danger col" formaction="admin_delete.do" type="submit" >삭제</button>
-				</div>
-				</div>
-				</div>
-				</form>
+		<form method="post" enctype="multipart/form-data" name="formPost">
+	    <div class="container-fluid px-4">
+	     <h1 class="mt-4 ">프로필 수정</h1><br>
+	       <div class="card mb-5"></div>
+	       <div style="position:relative" class="mb-5">
+	       	<div class="d-flex justify-content-center mt-2">
+			<img id="profile_img" name="profile_img" src="https://ezdev-sfy.s3.ap-northeast-2.amazonaws.com/admin/${getAdmin.admin_profileImg}" style="border:5px; border-radius:50%; width:200px; height:200px" />		</div>
+			<div style="position:absolute; top:180; right:540">
+			<div class="d-flex justify-content-center">
+			<label className="admin_profileImg_button" for="admin_profileImg">
+			<img src="resources/icon/upload.png" style="width:50; height:50; border-radius:50%"> 
+			</label>
+			</div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-md-6 offset-md-3">
+			<input type="file" name="admin_profileImg" id="admin_profileImg" accept="image/*" style="display:none"><br>
+			<input type="hidden" class="form-control mb-3" id="no" name="admin_no" value="${getAdmin.admin_no}" >
+			
+			<label class="form-label mb-3">관리자 이름</label> 	
+			<input type="text" class="form-control mb-3" id="name" name="admin_name" value="${getAdmin.admin_name}">
+			<label class="form-label mb-3">관리자 아이디</label> 				
+			<input type="text" class="form-control mb-3" id="id" name="admin_id" value="${getAdmin.admin_id}" >
+			<label class="form-label mb-3">비밀번호</label>
+			<input type="text" class="form-control mb-3" id="passwd" name="admin_passwd" value="${getAdmin.admin_passwd}">
+			<label class="form-label mb-3">이메일</label>
+			<input type="email" class="form-control mb-3" id="email" name="admin_email" value="${getAdmin.admin_email}">
+   			</div>
+   			</div>
+   			
+			<div class="row justify-content-evenly mt-5 mb-5">
+			<div class="col-4" style="display:inline-block">
+			<input class="w-100 btn btn-lg btn-primary col" type="button" value="수정" id="btnupdate">
+			</div>
+			<div class="col-4" style="display:inline-block">
+			<input class="w-100 btn btn-lg btn-danger col"  type="button" value="삭제" id="btndelete">
+			</div>
+			</div>
+			</div>
+			</form>
 				
 				 <footer class="py-4 bg-light mt-auto">
 			                    <div class="container-fluid px-4">
@@ -179,5 +177,25 @@
     						<!-- 모달 dialog끝입니다 -->
  								   </div>
                             <!-- 관리자등록 모달 내용 끝입니다 -->
+                  <script>
+                  $(document).ready(function(){
+                	  $("#btnupdate").click(function(){
+                		  if(confirm("수정하시겠습니까?")){
+                			  document.formPost.action="admin_update.do";
+                			  document.formPost.submit();
+                		  }
+                	  });
+                  });
+                  
+                  $(document).ready(function(){
+                	  $("#btndelete").click(function(){
+                		  if(confirm("삭제하시겠습니까?")){
+                			  document.formPost.action="admin_delete.do";
+                			  document.formPost.submit();
+                		  }
+                	  });
+                  });
+                  
+                  </script>
 			</body>
 		</html>

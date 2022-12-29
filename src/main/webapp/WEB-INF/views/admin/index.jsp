@@ -125,6 +125,7 @@
 	    				<div class="modal-body" style="height:380px">
 	  					<div class="border-1 rounded-lg">
 	  					
+	  					<!-- 관리자 등록 모달 form태그 시작 -->
 	  					<form name="f" action="admin_input_ok.do" method="post" enctype="multipart/form-data">
 	              		<div class="row mb-3">
 	              		<div class="col-md-6">
@@ -157,6 +158,7 @@
 	                    onkeyup="passConfirm()"/>
 	                    <div id="confirmMsg"></div>
 	                    <label for="admin_passwd_confirm">비밀번호 확인</label>
+	                   
 	                    <script type="text/javascript">
 	                            function passConfirm(){
 	                           var admin_passwd = document.getElementById('admin_passwd');
@@ -192,7 +194,6 @@
                      		</tbody>
                      		</table>
                      		
-							<!-- 모달 footer입니다 -->
 			               <div class="modal-footer">
 						   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
 						   <input type="submit" class="btn btn-primary" value="등록">

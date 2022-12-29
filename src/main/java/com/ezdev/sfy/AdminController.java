@@ -52,7 +52,6 @@ public class AdminController {
 	
 
 	
-	//top.jsp 로고 -> 관리자페이지
 	@RequestMapping("/admin.do")
 	public String admin(HttpSession session, HttpServletRequest req) {
 		
@@ -127,7 +126,7 @@ public class AdminController {
 		return "message";
 	}
 	@RequestMapping("/member_delete.do")
-	public String deleteMember(HttpServletRequest req, @ModelAttribute MemberDTO dto, BindingResult result) {
+	public String deleteMember(HttpServletRequest req, @ModelAttribute MemberDTO dto) {
 		int res = memberMapper.deleteListMember(dto);
 		
 		if(res>0) {
@@ -187,7 +186,7 @@ public class AdminController {
 		dto.setAdmin_passwd(req.getParameter("admin_passwd"));
 		dto.setAdmin_email(req.getParameter("admin_email"));
 		
-		
+	 	
 		session.setAttribute("adto", dto); //열린 세션에 adto라는 이름에 위의 관리자계정 등록 값dto를 저장
 		
 		int res = adminMapper.insertAdmin(dto); 
@@ -366,7 +365,7 @@ public class AdminController {
 		return "message";
 	}
 	@RequestMapping("/admin_delete.do")
-	public String adminDelete(HttpServletRequest req, @ModelAttribute AdminDTO dto) {
+	public String adminDelete(HttpServletRequest req, @ModelAttribute AdminDTO dto, BindingResult result) {
 		int res = adminMapper.adminDelete(dto);
 		
 		if(res>0) {

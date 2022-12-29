@@ -36,7 +36,8 @@
 		from qna where brddeleteflag = 'Y'
 		order by qna_no
 	</select>
-<!-- 문의 답변 내용 수정 -->
+	
+	<!-- 문의 답변 내용 수정 -->
 	<update id="tempOk" parameterType="QnaDTO">
 		update qna set qna_reply_content = #{qna_reply_content} where
 		qna_subject = #{qna_subject}

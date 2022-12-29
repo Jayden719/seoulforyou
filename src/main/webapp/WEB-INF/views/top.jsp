@@ -54,12 +54,14 @@
 <!-- 관리자 로그인이 되면 header부분이 바뀌도록 한다 -->    
         <c:if test="${not empty adto and empty mdto}">
 		<a href="admin.do" style="text-decoration-line:none"><img src="resources/icon/adminSite.svg" width="40" height="40"></a>
-			<button type="button" class="btn btn-secondary" onclick="javascript:adminLogout()"style="background-color: #A0C8C8;border-color:#A0C8C8;font-weight: 600;border-radius: 1rem;">
+			<button type="button" class="btn btn-secondary" onclick="javascript:adminLogout()"
+			style="background-color: #A0C8C8;border-color:#A0C8C8;font-weight: 600;border-radius: 1rem;">
 			로그아웃</button>
 		</c:if>
         
 		<c:if test="${empty mdto and empty adto}">
-      	<button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#loginModal" style="background-color: #A0C8C8;border-color:#A0C8C8;font-weight: 600;border-radius: 1rem;">
+      	<button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#loginModal" 
+      	style="background-color: #A0C8C8;border-color:#A0C8C8;font-weight: 600;border-radius: 1rem;">
       	로그인</button>
         </c:if>
       </div>
@@ -74,7 +76,10 @@
 			</div>
 		</body>
 <!-- 관리자 로그인 모달 -->
+
+<!-- bottom.jsp에서 아이콘을 누르면 관리자 로그인 모달창이 호출된다 -->
 <form name="a" action="admin_login_ok.do" method="post">
+<!-- form태그로 AdminController의 매핑된 주소로 페이지 이동한다  -->
   <div class="modal fade" id="AdminLoginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:350px">
       <div class="modal-content">
@@ -86,7 +91,7 @@
         
 		<div class="modal-body" align="center">
 			<h2 class="h3 mb-3 font-weight-normal">관리자 로그인</h2>
-			<div class="mb-3">		  
+			<div class="mb-3">	
 				<c:if test="${empty cookie.saveAid.value}"> 
 					<input type="text" name="admin_id" id="admin_id" class="form-control" placeholder="아이디" style="height:49px">
 				</c:if>

@@ -39,7 +39,7 @@ public class ChatController {
 		ArrayList<ChatDTO> chat_list = (ArrayList)chatMapper.listChat(dto);
 		
 		// 친구 리스트 불러오기
-			// 로그인한 유저의 mypageDTO에서 친구 불러오기
+		// 로그인한 유저의 mypageDTO에서 친구 불러오기
 		MyPageDTO mdto = mypageMapper.getMyPage(no);
 		String friends = mdto.getMypage_friend();
 
@@ -108,8 +108,6 @@ public class ChatController {
 			req.setAttribute("url", "/chat.do");
 			return "message.jsp";
 		}
-		
-		
 	}
 	
 	//새 쪽지 시작
@@ -144,9 +142,6 @@ public class ChatController {
 			ArrayList<ChatDTO> chat_list = (ArrayList)chatMapper.listChat(dto);
 			req.setAttribute("chatList", chat_list);
 
-			
-			
-			
 			return "chat/chat_list";
 			
 		}else { //만약 만들어진 방이 없다면
@@ -165,8 +160,5 @@ public class ChatController {
 				return "message.jsp";
 			}
 		}
-
 	}
-
-	
 }

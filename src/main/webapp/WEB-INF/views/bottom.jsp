@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--bottom.jsp-->
   <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -16,8 +17,10 @@
      <li></li>
 	 </c:when>        
      <c:otherwise>
+     <!-- 회원, 관리자 모두 로그인 되어 있지 않은 경우 관리자 로그인 아이콘이 보인다 -->
         <li class="ms-3"><a data-bs-toggle="modal" data-bs-target="#AdminLoginModal" class="text-muted">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+          class="bi bi-twitter" viewBox="0 0 16 16">
           <img src="resources/icon/administrator.png" width="16" height="16"/>
           </svg>
         </li>

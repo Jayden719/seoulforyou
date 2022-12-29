@@ -70,7 +70,7 @@ public class MyRouteController {
 		if (pdto.getMypage_favorite_tour() != null) {
 			String tour = pdto.getMypage_favorite_tour();
 			String[] array = tour.split(",");
-			List<TourDTO> favorite = (List) session.getAttribute("favorite");
+			List<TourDTO> favorite = (List)session.getAttribute("favorite");
 			if (favorite == null) {
 				favorite = new ArrayList<>();
 			}
