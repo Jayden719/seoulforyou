@@ -4,8 +4,8 @@
 <%@ include file="navBar.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
-<title>관리자 페이지</title>
 
+<title>관리자 페이지</title>
     <!-- 대시보드 항목입니다 -->
     <div class="container-fluid px-4">
         <h1 class="mt-4">대시보드</h1>
@@ -113,74 +113,67 @@
 				        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 				        <script src="resources/js/datatables-simple-demo.js"></script>
     
-    
+    				<!-- 문의내용 검색결과 모달 -->
+    				<div class="modal fade"  id="qnaFind" >
+           		    <div class="modal-dialog">
+			 		<div class="modal-content ">
+			  		<div class="modal-header justify-content-center">
+			  		<h1 class="h3 fw-normal">검색한 문의글</h1> 
+			  		 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			   		</div>
+			   		<div class="modal-body d-flex justify-content-center" style="width:500px; height:400px">
+			  		<textarea id="qnaFind2" rows="10px" cols="200px"  placeholder="검색한 문의글이 없습니다" class="d-flex justify-content-center"></textarea>
+					</div>
+					<div class="modal-footer">
+					</div>
+					</div>
+					</div>
+					</div>
+    					
     					 <!-- 관리자등록 모달 내용 --> 	
-                 		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                 		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="true" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       	<div class="modal-dialog">
                       	<div class="modal-content">
      				  	<div class="modal-header bg-light">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel"><strong>관리자 등록</strong></h1>  <!-- fs는 폰트 크기입니다 -->
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  <!-- 창의 취소 버튼입니다 -->
       					</div>
-	    				<div class="modal-body" style="height:380px">
-	  					<div class="border-1 rounded-lg">
-	  					
+	    				<div class="modal-body" style="height:600px">
 	  					<!-- 관리자 등록 모달 form태그 시작 -->
-	  					<form name="f" action="admin_input_ok.do" method="post" enctype="multipart/form-data">
-	              		<div class="row mb-3">
-	              		<div class="col-md-6">
-	                   <div class="form-floating mb-3 mb-md-0">
-	                   <input class="form-control" id="admin_id" name="admin_id" type="text" placeholder="아이디를 입력하세요" />
-	                   <label for="admin_id">아이디</label>
+	  					<form name="f" id="f" action="admin_input_ok.do" method="post" enctype="multipart/form-data">
+
+	                   <div class="form-floating mb-5">
+	                   <input class="form-control" id="admin_aid" name="admin_id" type="text" status="" />
+	                   <label for="admin_aid">아이디</label>
+	                   <input type="button" class="btn btn-secondary" onclick="checkAid()" value="중복확인" style="float:right">                   
 	                   </div>
-	                   </div>
-	                   <div class="col-md-6">
-	                   <div class="form-floating">
-	                   <input class="form-control" id="admin_name" name="admin_name" type="text" placeholder="이름을 입력하세요"/>
-	                   <label for="admin_name">성함</label>
-	                   </div>
-	              		</div>
-	              		</div>
-	              	    <div class="form-floating mb-3">
-	              	    <input class="form-control" id="admin_email" name="admin_email" type="email" placeholder="email@seoulforus.com" />
-	                   <label for="admin_email">이메일 주소</label>
-	              		</div>
-		               	<div class="row mb-3">
-		                   <div class="col-md-6">
-		                   <div class="form-floating mb-3 mb-md-0">
-		                  <input class="form-control" id="admin_passwd" name="admin_passwd" type="password" placeholder="비밀번호를 입력하세요" />
-		                   <label for="admin_passwd">비밀번호</label>
-		                   </div>
-		                   </div>
-	                   <div class="col-md-6">
-	                   <div class="form-floating mb-3 mb-md-0">
-	                    <input class="form-control" id="admin_passwd_confirm" name="admin_passwd_confirm" type="password" placeholder="비밀번호 확인" 
-	                    onkeyup="passConfirm()"/>
-	                    <div id="confirmMsg"></div>
-	                    <label for="admin_passwd_confirm">비밀번호 확인</label>
+	                  
 	                   
-	                    <script type="text/javascript">
-	                            function passConfirm(){
-	                           var admin_passwd = document.getElementById('admin_passwd');
-	                           var admin_passwd_confirm = document.getElementById('admin_passwd_confirm');
-	                           var confrimMsg = document.getElementById('confirmMsg');
-	                           var correctColor = "blue";
-	                           var wrongColor ="red";
-	                            	
-	                           if(admin_passwd.value == admin_passwd_confirm.value){
-	                        	   confirmMsg.style.color = correctColor;
-	                        	   confirmMsg.innerHTML ="비밀번호 일치";
-	                           }else{
-	                        	  	confirmMsg.style.color = wrongColor;
-	                   				confirmMsg.innerHTML ="비밀번호 불일치";
-	                           }
-	                            }
-	                            </script>
-	                    	</div>
-	                   	 </div>
+	                   <div class="form-floating mt-3 mb-3">
+	                   <input class="form-control" id="admin_name" name="admin_name" type="text"/>
+	                   <label for="admin_name">성함</label>
 	              		</div>
+	              		
+	              	    <div class="form-floating mb-3">
+	              	    <input class="form-control" id="admin_email" name="admin_email" type="email"  />
+	                   	<label for="admin_email">이메일 주소</label>
+	              		</div>
+	              		
+		                <div class="form-floating mb-3">
+	                   <input class="form-control" id="admin_passwd" name="admin_passwd" type="password"/>
+	                   <label for="admin_passwd">비밀번호</label>
+	                   </div>
+		                   
+	                   <div class="form-floating mb-3">
+	                   <input class="form-control" id="admin_passwd_confirm" name="admin_passwd_confirm" type="password"  
+	                    onkeyup="passConfirm()"/>
+	                   <label for="admin_passwd_confirm">비밀번호 확인</label>
+	                   </div>
+	                   
+	                   <div id="confirmMsg"></div>
+	                   
               		<!-- 파일 업로드 -->
-					<table class="form-floating mb-3 mb-md-0" >
+					<table class="form-floating mb-3 mb-md-1" >
 					<tbody>
 					<tr>
 					<th>프로필 이미지 첨부 </th>
@@ -194,20 +187,15 @@
                      		</tbody>
                      		</table>
                      		
-			               <div class="modal-footer">
-						   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-						   <input type="submit" class="btn btn-primary" value="등록">
-					  	   </div>
-      						</form>
-      						</div>
-      						</div>
-      						 <!-- 모달footer끝입니다 -->
-      							   </div>
-      					   	<!-- 모달content끝입니다 -->
-    							   </div>
-    						<!-- 모달 dialog끝입니다 -->
- 								   </div>
-                            <!-- 관리자등록 모달 내용 끝입니다 -->
+	               <div class="modal-footer">
+				   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				   <input type="button" onclick="submitForm()" class="btn btn-primary" value="등록">
+			  	   </div>
+					</form>
+					</div>
+    				</div>
+    				</div>
+				   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -295,6 +283,23 @@ memberChart.update();
      	
 </script>
 
+ <script type="text/javascript">
+     function passConfirm(){
+    var admin_passwd = document.getElementById('admin_passwd');
+    var admin_passwd_confirm = document.getElementById('admin_passwd_confirm');
+    var confrimMsg = document.getElementById('confirmMsg');
+    var correctColor = "blue";
+    var wrongColor ="red";
+     	
+    if(admin_passwd.value == admin_passwd_confirm.value){
+ 	   confirmMsg.style.color = correctColor;
+ 	   confirmMsg.innerHTML ="비밀번호 일치";
+    }else{
+ 	  	confirmMsg.style.color = wrongColor;
+confirmMsg.innerHTML ="비밀번호 불일치";
+    }
+     }
+     </script>
  
  <script>
      	//이번주 리뷰수 차트
@@ -349,10 +354,82 @@ memberChart.update();
 reviewChart.update();
 </script>
 
+<script type="text/javascript">
+function checkAid(){
+	let status = $('#admin_aid').attr('status');
+	let adminId = $('#admin_aid').val();
+	$('.checkIdSpan').remove();
+	
+	if(adminId == ""){
+		$('#admin_aid').after("<span class='checkIdSpan' style='color:lightgray'>아이디 중복상태를 확인해주세요</span>");
+		$('#admin_aid').focus();
+		return
+	}
+	$.ajax({
+		url : 'check_adminId.do',
+		type : 'post',
+		async : true,
+		data : {admin_id : adminId},
+		success : function(data){
+			if(data.holy>0){
+				$('#admin_aid').attr('status', 'no');
+				$('#admin_aid').after("<span class='checkIdSpan' style='color:red'>사용할수  없는 아이디 입니다</span>");
+				$('#admin_aid').focus();
+			}else{
+				$('#admin_aid').attr('status', 'yes');
+				$('#admin_aid').after("<span class='checkIdSpan' style='color:blue'>사용가능한 아이디입니다</span>");
+			}
+		},
+		error: function(e){
+			alert("에러입니다");
+		}
+	});
+}
+
+	function submitForm(){
+		let status = $('#admin_aid').attr('status');
+		
+		if(status == ""){
+			alert('중복체크를 해주십시오');
+			$('#admin_aid').focus();
+		}else if(status == "no"){
+			alert('아이디를 바꿔주십시오');
+			$('#admin_aid').focus();
+		}else{
+			$('#f').submit();
+		}
+	}
+</script>
+
+
+<script>
+	function qnaFind(){
+		var key_word = $('#qna_find').val();
+		
+		$.ajax({
+		url: 'qna_find.do',
+		method: 'post',
+		data: {
+			key_word: key_word	
+		},
+		success: function(data){
+			var qnaArr = data.qna;
+			$("#qnaFind2").text(qnaArr)
+		},
+		error : function(){
+			console.log("vv");
+		}
+		
+		})
+	}
+		</script>   
+
 <script>
 function adminLogout(){
 	location.href="adminLogout.do";
 }
 </script>
+
+
 </body>
 </html>

@@ -21,6 +21,7 @@
     
   <!-- 상단 네비바 메뉴 구성 -->
     <body class="sb-nav-fixed">
+    
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="index.do">SeoulforUs 관리자</a>
@@ -30,8 +31,9 @@
             <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></div>
             <!-- Navbar-->
 	            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <!-- fa-user로 기본 이미지 구현 -->
                 <!-- <i class="fas fa-user fa-fw"></i> 기본 아이콘 -->
+                <input id="qna_find" type="search" placeholder="게시글을 검색하세요" name="key_word">
+                <input onclick="qnaFind()" class="btn btn-primary" style="width:70px" value="검색" data-bs-target="#qnaFind" data-bs-toggle="modal">
 				<img id="profile_img" class="profile_img" src="https://ezdev-sfy.s3.ap-northeast-2.amazonaws.com/admin/${profile_img}" style="border-radius:50%; width:40px; height:40px" />                   
 	            </ul>
         </nav>

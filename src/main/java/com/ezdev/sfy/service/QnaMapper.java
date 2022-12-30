@@ -80,5 +80,9 @@ public class QnaMapper {
 		map.put("end", endRow);
 		return sqlSession.selectList("listBoardById", map);
 	}
+
+	public List<QnaDTO> qnaFind(String key_word) {
+		return sqlSession.selectList("qnaFind", key_word);
+	}
 	
 }

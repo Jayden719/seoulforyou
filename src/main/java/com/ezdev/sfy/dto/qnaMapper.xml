@@ -71,4 +71,7 @@
 	<![CDATA[ where rn >= #{start} and rn <=#{end} ]]> 
 	</select>
 	
+	<select id="qnaFind" parameterType="String" resultType="QnaDTO">
+	select qna_content from qna where qna_subject like CONCAT('%', #{key_word}, '%')
+	</select>
 	</mapper>

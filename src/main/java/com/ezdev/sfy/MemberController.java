@@ -150,7 +150,6 @@ public class MemberController {
 	        	session.setAttribute("userId", userInfo.get("member_email"));
 	        	session.setAttribute("access_token", access_token);
 	        }
-	        
 	        	return "index";
 		}     
 	     

@@ -13,7 +13,16 @@ public class QnaDTO {
 	private String qna_reply_content;
 	private String qna_reply_regdate;
 	private String brddeleteflag;
+	private String key_word;
 	
+	
+	
+	public String getKey_word() {
+		return key_word;
+	}
+	public void setKey_word(String key_word) {
+		this.key_word = key_word;
+	}
 	public String getBrddeleteflag() {
 		return brddeleteflag;
 	}

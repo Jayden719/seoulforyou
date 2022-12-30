@@ -2,7 +2,9 @@ package com.ezdev.sfy;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -161,7 +163,6 @@ public class AdminController {
 		if(result.hasErrors()) {
 			dto.setAdmin_profileImg("");
 		}
-		
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
 		MultipartFile files = mr.getFile("admin_profileImg");
 		String filename = files.getOriginalFilename();
@@ -386,11 +387,55 @@ public class AdminController {
 
 		String member_id = (String)req.getParameter("qna_writer");
 		
+		
 		MemberDTO dto = memberMapper.getMemberId(member_id);
 		
 		String member_email = dto.getMember_email();
 		
 		return member_email;
+	}
+	@ResponseBody
+	@RequestMapping("/qna_find.do")
+	public Map<String, Object> qnaFind(HttpServletRequest req) {
+		String key_word = (String)req.getParameter("key_word");
+		
+		List<QnaDTO> qnafind = qnaMapper.qnaFind(key_word);
+		List<String> qnacontent = new ArrayList<>();
+		
+		
+		for(int i=0; i<qnafind.size(); i++) {
+			 qnacontent.add(qnafind.get(i).getQna_content());
+			 
+			}
+		Map<String, Object> qnafindList= new HashMap<>(); 
+		qnafindList.put("qna", qnacontent);
+		
+		System.out.println(qnafindList);
+		
+		return qnafindList;
+		
+		
+		//Iterator<QnaDTO> iterator = dto.iterator();
+		//QnaDTO qna_content = iterator.next();
+		//String qna_contents = qna_content.getQna_content();
+		//System.out.println(qna_contents);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/check_adminId.do")
+	public Map<String, Integer> checkId(@RequestParam String admin_id){
+		AdminDTO dto = adminMapper.getAdminId(admin_id);
+		Map<String, Integer> map = new HashMap<>();
+		
+		System.out.print("들어왔나?");
+		
+		if(dto == null) { //중복된 아이디가 없다는 뜻
+			map.put("holy", 0);
+		}else {
+			map.put("holy", 1);
+		}
+		return map;
 	}
 	}
 

@@ -78,24 +78,21 @@
 <!-- 관리자 로그인 모달 -->
 
 <!-- bottom.jsp에서 아이콘을 누르면 관리자 로그인 모달창이 호출된다 -->
-<form name="a" action="admin_login_ok.do" method="post">
 <!-- form태그로 AdminController의 매핑된 주소로 페이지 이동한다  -->
   <div class="modal fade" id="AdminLoginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:350px">
       <div class="modal-content">
-      
         <div class="modal-header">
           <img src="resources/img/seoulforyou.png"  style="width:50%; margin-left:-10px" >
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
+		<form name="a" action="admin_login_ok.do" method="post">
 		<div class="modal-body" align="center">
 			<h2 class="h3 mb-3 font-weight-normal">관리자 로그인</h2>
 			<div class="mb-3">	
 				<c:if test="${empty cookie.saveAid.value}"> 
 					<input type="text" name="admin_id" id="admin_id" class="form-control" placeholder="아이디" style="height:49px">
 				</c:if>
-				
 				<c:if test="${not empty cookie.saveAid.value}">
 					<input type="text" name="admin_id" id="admin_id" class="form-control" value="${cookie.saveAid.value}" style="height:49px">
 				</c:if>
@@ -122,7 +119,6 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:350px">
       <div class="modal-content">
-      
         <div class="modal-header">
           <img src="resources/img/seoulforyou.png"  style="width:50%; margin-left:-10px" >
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
