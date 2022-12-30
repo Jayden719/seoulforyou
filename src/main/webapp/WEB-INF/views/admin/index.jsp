@@ -417,9 +417,7 @@ function checkAid(){
 			$("#qnaFind2").text(qnaArr)
 		},
 		error : function(){
-			console.log("vv");
 		}
-		
 		})
 	}
 		</script>   

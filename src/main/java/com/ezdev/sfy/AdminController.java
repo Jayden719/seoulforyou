@@ -285,7 +285,7 @@ public class AdminController {
 			
 			//쿠키전송, 아이디를 기억하기 위해 
 			Cookie cookie = new Cookie("saveAid", map.get("admin_id"));
-			if(map.containsKey("saveAid")) cookie.setMaxAge(24*60*60);
+			if(map.containsKey("saveAid"))cookie.setMaxAge(24*60*60);
 			else cookie.setMaxAge(0);
 			resp.addCookie(cookie);
 		}else {
@@ -398,21 +398,25 @@ public class AdminController {
 	@RequestMapping("/qna_find.do")
 	public Map<String, Object> qnaFind(HttpServletRequest req) {
 		String key_word = (String)req.getParameter("key_word");
+		Map<String, Object> qnafindList= new HashMap<>(); 
 		
+		if(key_word == null || key_word.trim().equals("") ) {
+			qnafindList.put("qna", "입력한 키워드가 없습니다");
+		
+		}else {
+		//QnaDTO타입으로 포함되어 있는 결과
+			
 		List<QnaDTO> qnafind = qnaMapper.qnaFind(key_word);
 		List<String> qnacontent = new ArrayList<>();
-		
-		
 		for(int i=0; i<qnafind.size(); i++) {
 			 qnacontent.add(qnafind.get(i).getQna_content());
-			 
 			}
-		Map<String, Object> qnafindList= new HashMap<>(); 
+		//QnaDTO타입의 결과 값을 map타입으로 하여 qna_content만 뽑아낸 결과
 		qnafindList.put("qna", qnacontent);
-		
-		System.out.println(qnafindList);
+		}
 		
 		return qnafindList;
+		
 		
 		
 		//Iterator<QnaDTO> iterator = dto.iterator();
@@ -427,8 +431,6 @@ public class AdminController {
 	public Map<String, Integer> checkId(@RequestParam String admin_id){
 		AdminDTO dto = adminMapper.getAdminId(admin_id);
 		Map<String, Integer> map = new HashMap<>();
-		
-		System.out.print("들어왔나?");
 		
 		if(dto == null) { //중복된 아이디가 없다는 뜻
 			map.put("holy", 0);

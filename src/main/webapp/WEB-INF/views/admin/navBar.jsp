@@ -33,8 +33,8 @@
 	            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <!-- <i class="fas fa-user fa-fw"></i> 기본 아이콘 -->
                 <input id="qna_find" type="search" placeholder="게시글을 검색하세요" name="key_word">
-                <input onclick="qnaFind()" class="btn btn-primary" style="width:70px" value="검색" data-bs-target="#qnaFind" data-bs-toggle="modal">
-				<img id="profile_img" class="profile_img" src="https://ezdev-sfy.s3.ap-northeast-2.amazonaws.com/admin/${profile_img}" style="border-radius:50%; width:40px; height:40px" />                   
+                <input onclick="qnaFind()" class="btn btn-primary me-lg-2" style="width:70px; padding:6 12 6 12;" value="검색" data-bs-target="#qnaFind" data-bs-toggle="modal">
+				<img id="profile_img" class="profile_img" src="https://ezdev-sfy.s3.ap-northeast-2.amazonaws.com/admin/${profile_img}" style="border-radius:50%; width:40px; height:40px;"/>                   
 	            </ul>
         </nav>
         
